@@ -30,15 +30,15 @@ class HomeResponder
     }
 
     /**
-     * @param $test
+     * @param $posts
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function __invoke($test)
+    public function __invoke($posts)
     {
-        return new Response($this->twig->render('home.html.twig', ['test' => $test]), Response::HTTP_OK);
+        return new Response($this->twig->render('home.html.twig', ['posts' => $posts]), Response::HTTP_OK);
     }
 }

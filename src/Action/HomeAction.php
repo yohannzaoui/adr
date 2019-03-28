@@ -4,6 +4,7 @@
 namespace App\Action;
 
 
+use App\Domain\Repository\PostRepository;
 use App\Responder\HomeResponder;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,9 +15,24 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class HomeAction
 {
+    /**
+     * @var \App\Domain\Repository\PostRepository
+     */
+    private $repository;
+
+    /**
+     * HomeAction constructor.
+     *
+     * @param \App\Domain\Repository\PostRepository $repository
+     */
+    public function __construct(PostRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * @Route("/")
+     *
      * @param \App\Responder\HomeResponder $responder
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -26,8 +42,8 @@ class HomeAction
      */
     public function __invoke(HomeResponder $responder)
     {
-       $test = "bonjour";
+       $posts = $this->repository->findAll();
 
-       return $responder($test);
+       return $responder($posts);
     }
 }
