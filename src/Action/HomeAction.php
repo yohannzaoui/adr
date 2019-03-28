@@ -31,7 +31,7 @@ class HomeAction
     }
 
     /**
-     * @Route("/")
+     * @Route(path="/", name="home", methods={"GET"})
      *
      * @param \App\Responder\HomeResponder $responder
      *
